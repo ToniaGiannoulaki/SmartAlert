@@ -24,7 +24,7 @@ import java.util.Locale;
 
 public class MenuScreen extends AppCompatActivity {
     
-    private Button button;
+    Button button;
     private EditText editText_email, editText_password;
     boolean passwordVisible;
     FirebaseAuth firebaseAuth;
@@ -40,12 +40,14 @@ public class MenuScreen extends AppCompatActivity {
 
         loadLocale();
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setTitle(getResources().getString(R.string.app_name));
 
         //Sign in Account
         editText_email = findViewById(R.id.text_email);
         editText_password = findViewById(R.id.text_password);
 
+        /*
         //Visible/invisible password
         editText_password.setOnTouchListener((view, motionEvent) -> {
             final int Right = 2;
@@ -69,7 +71,7 @@ public class MenuScreen extends AppCompatActivity {
             }
             return false;
         });
-
+        */
         // Check if user is already logged in
         FirebaseUser currentUser =  firebaseAuth.getCurrentUser();
         if (currentUser != null) {
@@ -105,12 +107,12 @@ public class MenuScreen extends AppCompatActivity {
         mBuilder.setSingleChoiceItems(listItems, -1, (dialogInterface, i) -> {
             if (i==0){
                 //Choose English
-                setlocale("en");
+                setLocale("en");
                 recreate();
             }
             else if(i==1){
                 //Choose Greek
-                setlocale("gr");
+                setLocale("gr");
                 recreate();
             }
             //dismiss alert dialog when language is selected
@@ -121,7 +123,7 @@ public class MenuScreen extends AppCompatActivity {
         mDialog.show();
     }
 
-    private void setlocale(String lang) {
+    private void setLocale(String lang) {
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -137,7 +139,7 @@ public class MenuScreen extends AppCompatActivity {
     public void loadLocale (){
         SharedPreferences preferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         String language = preferences.getString("My_Lang", "");
-        setlocale(language);
+        setLocale(language);
     }
 
     //Sign in
@@ -149,6 +151,7 @@ public class MenuScreen extends AppCompatActivity {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         if (user != null) {
                             String email = user.getEmail();
+                            assert email != null;
                             if (email.endsWith("@gov.gr")) {
                                 // Email ends with "@gov.gr", open employer activity
                                 Intent intent = new Intent(MenuScreen.this, LoginEmployee.class);
