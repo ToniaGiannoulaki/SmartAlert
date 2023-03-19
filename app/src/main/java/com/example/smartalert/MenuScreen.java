@@ -25,7 +25,7 @@ import java.util.Locale;
 public class MenuScreen extends AppCompatActivity {
     
     Button button;
-    private EditText editText_email, editText_password;
+    EditText editText_email, editText_password;
     boolean passwordVisible;
     FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
@@ -76,6 +76,10 @@ public class MenuScreen extends AppCompatActivity {
         FirebaseUser currentUser =  firebaseAuth.getCurrentUser();
         if (currentUser != null) {
             Intent intent = new Intent(MenuScreen.this, LoginUser.class);
+            startActivity(intent);
+            finish();
+        } else{
+            Intent intent = new Intent(MenuScreen.this, LoginEmployee.class);
             startActivity(intent);
             finish();
         }

@@ -22,10 +22,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginUser extends AppCompatActivity {
 
-    public Button button_logOut;
-    public ImageButton b1, b2, b3, b4, b5, b6;
-    public TextView one, two, three, four, five, six, textView_welcome;
-    private FirebaseAuth mAuth;
+    Button button_logOut;
+    ImageButton b1, b2, b3, b4, b5, b6;
+    TextView one, two, three, four, five, six, textView_welcome;
+    FirebaseAuth mAuth;
 
 
     @Override

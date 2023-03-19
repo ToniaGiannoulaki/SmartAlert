@@ -6,4 +6,129 @@
     android:layout_height="match_parent"
     tools:context=".IncidentEmployee">
 
+    <Button
+        android:id="@+id/button_Send2"
+        android:layout_width="119dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="39dp"
+        android:background="#7E57C2"
+        android:text="Send"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine_Description2" />
+
+    <EditText
+        android:id="@+id/editTextTextMultiLine_Description2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Describe the incident"
+        android:inputType="textMultiLine"
+        android:maxLength="100"
+        app:layout_constraintBottom_toTopOf="@+id/button_Send2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+
+    <TextView
+        android:id="@+id/textView_Report2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="332dp"
+        android:text="Report Incident"
+        android:textColor="@color/purple_500"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextMultiLine_Description2"
+        app:layout_constraintEnd_toStartOf="@+id/editText_Title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:hint="Title"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText_Latitude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_Report2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText_Latitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="Latitude"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText_Longitude"
+        app:layout_constraintStart_toStartOf="@+id/editText_Title"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Title" />
+
+    <EditText
+        android:id="@+id/editText_Longitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="Longitude"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText_MaxDistance"
+        app:layout_constraintStart_toStartOf="@+id/editText_Latitude"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Latitude" />
+
+    <EditText
+        android:id="@+id/editText_MaxDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:hint="Max Distance"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextDate"
+        app:layout_constraintStart_toStartOf="@+id/editText_Longitude"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Longitude" />
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:ems="10"
+        android:hint="Date"
+        android:inputType="date"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTime"
+        app:layout_constraintStart_toStartOf="@+id/editText_MaxDistance"
+        app:layout_constraintTop_toBottomOf="@+id/editText_MaxDistance" />
+
+    <EditText
+        android:id="@+id/editTextTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:hint="Time"
+        android:inputType="time"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextMultiLine_Description2"
+        app:layout_constraintStart_toStartOf="@+id/editTextDate"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 </androidx.constraintlayout.widget.ConstraintLayout>
