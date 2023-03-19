@@ -30,7 +30,6 @@ public class LoginEmployee extends AppCompatActivity {
             confirmLogOut();
         });
     }
-
     private void confirmLogOut() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to log out?")
@@ -38,6 +37,7 @@ public class LoginEmployee extends AppCompatActivity {
                 .setPositiveButton("Yes", (dialog, id) -> {
                     mAuth.signOut();
                     Intent intent = new Intent(LoginEmployee.this, MenuScreen.class);
+                    intent.putExtra("userType", "Employee");
                     startActivity(intent);
                     finish();
                 })

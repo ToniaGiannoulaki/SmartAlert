@@ -1,30 +1,19 @@
 package com.example.smartalert;
-
-import static android.service.controls.ControlsProviderService.TAG;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class LoginUser extends AppCompatActivity {
 
     Button button_logOut;
     ImageButton b1, b2, b3, b4, b5, b6;
-    TextView one, two, three, four, five, six, textView_welcome;
+    TextView one, two, three, four, five, six;
     FirebaseAuth mAuth;
 
 
@@ -32,13 +21,6 @@ public class LoginUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_user);
-
-        mAuth = FirebaseAuth.getInstance();
-
-        // calling method
-        // for getting data.
-        getData();
-
 
         button_logOut = findViewById(R.id.button_LogOut);
         button_logOut.setOnClickListener(view -> confirmLogOut());
@@ -125,6 +107,7 @@ public class LoginUser extends AppCompatActivity {
                 .setPositiveButton("Yes", (dialog, id) -> {
                     mAuth.signOut();
                     Intent intent = new Intent(LoginUser.this, MenuScreen.class);
+                    intent.putExtra("userType", "user");
                     startActivity(intent);
                     finish();
                 })
@@ -133,58 +116,4 @@ public class LoginUser extends AppCompatActivity {
         alert.show();
     }
 
-    @Override
-    public void onBackPressed() {
-        confirmLogOut();
-    }
-
-    private void getData() {
-        // Declare a DatabaseReference variable to reference the "Users" node in your database
-        DatabaseReference usersRef;
-
-        // In your onCreate() method, initialize the Firebase Database reference and retrieve the current user's ID
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        String currentUserId = mAuth.getCurrentUser().getUid();
-        usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
-
-        // Retrieve the user's name from the "name" child node of their database entry
-        usersRef.child("name").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // Get the user's name as a String
-                String userName = snapshot.getValue(String.class);
-
-                // Find the TextView in your app's layout file and set its text to the user's name
-                textView_welcome = findViewById(R.id.textView_Welcomeback);
-                textView_welcome.setText(userName);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle the error case if the database read was cancelled
-                Log.w(TAG, "loadUser:onCancelled", error.toException());
-            }
-        });
-
-        /*
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        String currentUserId = mAuth.getCurrentUser().getUid();
-        // Retrieve the user's name from the database and display it in a TextView
-        String path = "Users/" + userId + "/name";
-        FirebaseDatabase.getInstance().getReference().child(path).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String name = dataSnapshot.getValue(String.class);
-                // initializing our object class variable.
-                textView_welcome = findViewById(R.id.textView_Welcomeback);
-                textView_welcome.setText(name);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Handle error
-            }
-        });
-        */
-    }
 }
