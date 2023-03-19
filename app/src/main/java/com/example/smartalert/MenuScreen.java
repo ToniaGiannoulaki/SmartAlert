@@ -75,10 +75,19 @@ public class MenuScreen extends AppCompatActivity {
         // Check if user is already logged in
         FirebaseUser currentUser =  firebaseAuth.getCurrentUser();
         if (currentUser != null) {
-            Intent intent = new Intent(MenuScreen.this, LoginUser.class);
-            startActivity(intent);
-            finish();
+            SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
+            String userRole = sharedPreferences.getString("userRole", "");
+            if (userRole.equals("user")) {
+                Intent intent = new Intent(MenuScreen.this, LoginUser.class);
+                startActivity(intent);
+                finish();
+            } else if (userRole.equals("employee")) {
+                Intent intent = new Intent(MenuScreen.this, LoginEmployee.class);
+                startActivity(intent);
+                finish();
+            }
         }
+
         button = findViewById(R.id.button_sign_in);
         button.setOnClickListener(view -> {
             String email = editText_email.getText().toString().trim();
@@ -175,27 +184,6 @@ public class MenuScreen extends AppCompatActivity {
     public void onBackPressed() {
         // Exit the app
         finishAffinity();
-    }
-    // In the MenuScreen class
-    private void confirmLogOut() {
-        String userType = getIntent().getStringExtra("userType");
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure you want to log out?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", (dialog, id) -> {
-                    firebaseAuth.signOut();
-                    if (userType.equals("user")) {
-                        Intent intent = new Intent(MenuScreen.this, LoginUser.class);
-                        startActivity(intent);
-                    } else if (userType.equals("employee")) {
-                        Intent intent = new Intent(MenuScreen.this, LoginEmployee.class);
-                        startActivity(intent);
-                    }
-                    finish();
-                })
-                .setNegativeButton("No", (dialog, id) -> dialog.cancel());
-        AlertDialog alert = builder.create();
-        alert.show();
     }
 
 }

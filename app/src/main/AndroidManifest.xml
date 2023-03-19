@@ -18,6 +18,12 @@
         android:theme="@style/Theme.SmartAlert"
         tools:targetApi="31">
         <activity
+            android:name=".MessagesEmployee"
+            android:exported="false" />
+        <activity
+            android:name=".MessagesUser"
+            android:exported="false" />
+        <activity
             android:name=".IncidentEmployee"
             android:exported="false" />
         <activity
