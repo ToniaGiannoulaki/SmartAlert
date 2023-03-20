@@ -19,6 +19,17 @@
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="@+id/textView4" />
 
+    <Button
+        android:id="@+id/button_MessagesUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+        android:layout_marginBottom="8dp"
+        android:background="#7E57C2"
+        android:text="Messages"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/textView4" />
+
     <TextView
         android:id="@+id/textView_flood"
         android:layout_width="wrap_content"
@@ -196,7 +207,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="Welcome User"
+        android:text="Welcome"
         android:textColor="@color/purple_500"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/button_LogOut"

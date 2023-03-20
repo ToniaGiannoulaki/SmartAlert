@@ -14,14 +14,12 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,8 +31,6 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -45,7 +41,6 @@ public class IncidentUser extends AppCompatActivity {
     Calendar calendar;
     SimpleDateFormat simpleDateFormat, simpleDateFormat1;
     String Date, Time ;
-
     EditText description;
     LocationManager locationManager;
     FusedLocationProviderClient mFusedLocationClient;
@@ -89,26 +84,21 @@ public class IncidentUser extends AppCompatActivity {
         Button button = findViewById(R.id.button_Send);
         description = findViewById(R.id.editTextTextMultiLine_Description);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (description.getText().toString().trim().isEmpty()) {
-                    Toast.makeText(IncidentUser.this, "To send the message you must describe the incident",Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(IncidentUser.this, "Message sent successfully!",Toast.LENGTH_LONG).show();
-                }
+        button.setOnClickListener(view -> {
+            if (description.getText().toString().trim().isEmpty()) {
+                Toast.makeText(IncidentUser.this, "To send the message you must describe the incident",Toast.LENGTH_LONG).show();
+                saveMessage();
+            }
+            else{
+                Toast.makeText(IncidentUser.this, "Message sent successfully!",Toast.LENGTH_LONG).show();
             }
         });
 
         //Load Image from the gallery
         Button button_Gallery = findViewById(R.id.button_Image);
-        button_Gallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 3);
-            }
+        button_Gallery.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, 3);
         });
     }
 
@@ -119,7 +109,7 @@ public class IncidentUser extends AppCompatActivity {
             Uri selectedImage = data.getData();
             ImageView imageView = findViewById(R.id.imageView);
             Glide.with(this).load(selectedImage).into(imageView);
-
+            Toast.makeText(IncidentUser.this, "Image uploaded successfully!",Toast.LENGTH_LONG).show();
 
             // Check if the ImageView has an image set
             if (imageView.getDrawable() != null) {
@@ -143,17 +133,14 @@ public class IncidentUser extends AppCompatActivity {
                 // location from
                 // FusedLocationClient
                 // object
-                mFusedLocationClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Location> task) {
-                        Location location = task.getResult();
-                        if (location == null) {
-                            requestNewLocationData();
-                        } else {
-                            latitude.setText(location.getLatitude() + "");
-                            longitude.setText(location.getLongitude() + "");
-                            address.setText(getUserCountry(address.getContext()));
-                        }
+                mFusedLocationClient.getLastLocation().addOnCompleteListener(task -> {
+                    Location location = task.getResult();
+                    if (location == null) {
+                        requestNewLocationData();
+                    } else {
+                        latitude.setText(location.getLatitude() + "");
+                        longitude.setText(location.getLongitude() + "");
+                        address.setText(getUserCountry(address.getContext()));
                     }
                 });
             } else {
@@ -258,5 +245,10 @@ public class IncidentUser extends AppCompatActivity {
         }
         catch (Exception e) { }
         return null;
+    }
+
+    //Save message to Firebase Realtime DB
+    public void saveMessage(){
+
     }
 }
