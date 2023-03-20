@@ -31,13 +31,16 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 public class IncidentUser extends AppCompatActivity {
-    TextView textView, address, latitude, longitude, date, time;
+    TextView incident, address, latitude, longitude, date, time;
     Calendar calendar;
     SimpleDateFormat simpleDateFormat, simpleDateFormat1;
     String Date, Time ;
@@ -45,23 +48,29 @@ public class IncidentUser extends AppCompatActivity {
     LocationManager locationManager;
     FusedLocationProviderClient mFusedLocationClient;
     int PERMISSION_ID = 44;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+    IncidentInfo incidentInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incident_user);
 
-        //Transfer DATA from LoginUser class
-        textView = (TextView) findViewById(R.id.textView3);
+        incidentInfo = new IncidentInfo();
+        ImageView imageUrl = findViewById(R.id.imageView);
 
-        Intent incindentUser = getIntent();
-        String text = incindentUser.getStringExtra("incident");
-        textView.setText(text);
+        //Transfer DATA from LoginUser class
+        incident = findViewById(R.id.textView3);
+        Intent incidentUser = getIntent();
+        String text = incidentUser.getStringExtra("incident");
+        incident.setText(text);
 
         //Receive user's timestamp
-        latitude = (TextView) findViewById(R.id.textView_Latitude);
-        longitude = (TextView) findViewById(R.id.textView_Longitude);
-        address =  (TextView) findViewById(R.id.textView_Address2);
+        latitude = findViewById(R.id.textView_Latitude);
+        longitude = findViewById(R.id.textView_Longitude);
+        address =  findViewById(R.id.textView_Address2);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -70,12 +79,12 @@ public class IncidentUser extends AppCompatActivity {
 
         //Receive user's date and time
         calendar = Calendar.getInstance();
-        date = (TextView) findViewById(R.id.textView_Date);
+        date = findViewById(R.id.textView_Date);
         simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date= simpleDateFormat.format(calendar.getTime());
         date.setText(Date);
 
-        time = (TextView) findViewById(R.id.textView_Time);
+        time = findViewById(R.id.textView_Time);
         simpleDateFormat1 = new SimpleDateFormat("HH:mm");
         Time= simpleDateFormat1.format(calendar.getTime());
         time.setText(Time);
@@ -85,12 +94,21 @@ public class IncidentUser extends AppCompatActivity {
         description = findViewById(R.id.editTextTextMultiLine_Description);
 
         button.setOnClickListener(view -> {
+            String inc = incident.getText().toString().trim();
+            String add = address.getText().toString().trim();
+            String lat = latitude.getText().toString().trim();
+            String lon = longitude.getText().toString().trim();
+            String dat = date.getText().toString().trim();
+            String tim = time.getText().toString().trim();
+            String desc = description.getText().toString().trim();
+            String ima = imageUrl.toString();
+
             if (description.getText().toString().trim().isEmpty()) {
                 Toast.makeText(IncidentUser.this, "To send the message you must describe the incident",Toast.LENGTH_LONG).show();
-                saveMessage();
             }
             else{
                 Toast.makeText(IncidentUser.this, "Message sent successfully!",Toast.LENGTH_LONG).show();
+                saveMessage(inc,add,lat,lon,dat,tim,desc,ima);
             }
         });
 
@@ -248,7 +266,23 @@ public class IncidentUser extends AppCompatActivity {
     }
 
     //Save message to Firebase Realtime DB
-    public void saveMessage(){
+    public void saveMessage(String inc, String add, String lat, String lon, String dat, String ti, String desc,String img){
+
+        incidentInfo.setIncident(inc);
+        incidentInfo.setCountry(add);
+        incidentInfo.setLatitude(lat);
+        incidentInfo.setLongitude(lon);
+        incidentInfo.setDate(dat);
+        incidentInfo.setTime(ti);
+        incidentInfo.setDescription(desc);
+        incidentInfo.setImageUri(img);
+
+
+        FirebaseAuth mAuth =  FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("Messages");
+        String userId = databaseReference.push().getKey();
+        databaseReference.child(userId).setValue(incidentInfo);
 
     }
 }

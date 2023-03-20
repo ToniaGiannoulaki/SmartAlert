@@ -207,7 +207,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="Welcome"
+        android:text="Welcome User"
         android:textColor="@color/purple_500"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/button_LogOut"
