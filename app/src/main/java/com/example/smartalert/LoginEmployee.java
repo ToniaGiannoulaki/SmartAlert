@@ -18,13 +18,21 @@ public class LoginEmployee extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_employer);
 
-
+        //Employee goes to IncidentEmployee class
         Button button_Report = findViewById(R.id.button_Report);
         button_Report.setOnClickListener(view -> {
             Intent intent = new Intent(LoginEmployee.this, IncidentEmployee.class);
             startActivity(intent);
         });
 
+        //Employee goes to MessagesEmployee class
+        Button button_Message = findViewById(R.id.button_Messages);
+        button_Message.setOnClickListener(view -> {
+            Intent intent = new Intent(LoginEmployee.this, MessagesEmployee.class);
+            startActivity(intent);
+        });
+
+        //Employee goes to MenuScreen class
         Button button_LogOut = findViewById(R.id.button_LogOut_Employer);
         button_LogOut.setOnClickListener(view -> {
             confirmLogOut();

@@ -7,20 +7,27 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -40,15 +47,8 @@ public class IncidentUser extends AppCompatActivity {
     String Date, Time ;
 
     EditText description;
-    Button button;
     LocationManager locationManager;
-    // initializing
-    // FusedLocationProviderClient
-    // object
     FusedLocationProviderClient mFusedLocationClient;
-
-    // Initializing other items
-    // from layout file
     int PERMISSION_ID = 44;
 
     @Override
@@ -86,8 +86,8 @@ public class IncidentUser extends AppCompatActivity {
         time.setText(Time);
 
         //Check if edit text is empty, it's a required field
-        button = (Button) findViewById(R.id.button_Send);
-        description = (EditText) findViewById(R.id.editTextTextMultiLine_Description);
+        Button button = findViewById(R.id.button_Send);
+        description = findViewById(R.id.editTextTextMultiLine_Description);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +100,34 @@ public class IncidentUser extends AppCompatActivity {
                 }
             }
         });
+
+        //Load Image from the gallery
+        Button button_Gallery = findViewById(R.id.button_Image);
+        button_Gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 3);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && data != null){
+            Uri selectedImage = data.getData();
+            ImageView imageView = findViewById(R.id.imageView);
+            Glide.with(this).load(selectedImage).into(imageView);
+
+
+            // Check if the ImageView has an image set
+            if (imageView.getDrawable() != null) {
+                Log.d("MyApp", "Image loaded successfully into ImageView");
+            } else {
+                Log.d("MyApp", "Failed to load image into ImageView");
+            }
+        }
 
     }
 
@@ -213,6 +241,7 @@ public class IncidentUser extends AppCompatActivity {
     }
 
     //Get the user's country
+    @Nullable
     public static String getUserCountry(Context context) {
         try {
             final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);

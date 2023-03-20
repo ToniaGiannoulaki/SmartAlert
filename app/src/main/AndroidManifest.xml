@@ -21,9 +21,6 @@
             android:name=".MessagesEmployee"
             android:exported="false" />
         <activity
-            android:name=".MessagesUser"
-            android:exported="false" />
-        <activity
             android:name=".IncidentEmployee"
             android:exported="false" />
         <activity

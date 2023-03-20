@@ -79,20 +79,20 @@
     <EditText
         android:id="@+id/editTextTextMultiLine_Description"
         android:layout_width="0dp"
-        android:layout_height="51dp"
+        android:layout_height="0dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="328dp"
         android:layout_marginEnd="28dp"
-        android:layout_marginBottom="41dp"
+        android:layout_marginBottom="22dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Describe the incident"
         android:inputType="textMultiLine"
         android:maxLength="40"
-        app:layout_constraintBottom_toTopOf="@+id/button_Image"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_Image"
@@ -109,11 +109,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
+        android:layout_marginEnd="128dp"
         android:layout_marginBottom="147dp"
         android:text="Choose Image: "
         android:textColor="@color/purple_500"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -201,5 +203,18 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/textView_Report"
         app:layout_constraintTop_toBottomOf="@+id/textView_Report" />
+
+    <ImageView
+        android:id="@+id/imageView"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="112dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_Choose"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine_Description"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
