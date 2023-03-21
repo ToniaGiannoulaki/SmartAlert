@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Welcome Employee"
+        android:text="Welcome"
         android:textColor="@color/purple_500"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
         android:layout_marginTop="43dp"
-        android:text="Choose an Activity:"
+        android:text="@string/choose_an_activity"
         android:textColor="@color/purple_500"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +49,7 @@
         android:layout_marginStart="27dp"
         android:layout_marginTop="17dp"
         android:background="#7E57C2"
-        android:text="Messages"
+        android:text="@string/messages"
         app:layout_constraintStart_toStartOf="@+id/button_Report"
         app:layout_constraintTop_toBottomOf="@+id/button_Report" />
 
@@ -60,7 +60,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:background="#7E57C2"
-        android:text="Log out"
+        android:text="@string/log_out"
         app:layout_constraintStart_toStartOf="@+id/button_Messages"
         app:layout_constraintTop_toBottomOf="@+id/button_Messages" />
 </androidx.constraintlayout.widget.ConstraintLayout>

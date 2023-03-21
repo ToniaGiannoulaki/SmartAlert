@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SmartAlert</string>
+    <string name="app_name" translatable="false">SmartAlert</string>
     <string name="password">Password</string>
     <string name="confirm">Confirm</string>
     <string name="post_address">Post address</string>
@@ -12,4 +12,33 @@
     <string name="password_login">password</string>
     <string name="Language">Language</string>
     <string name="name">Name</string>
+    <string name="send">Send</string>
+    <string name="describe_the_incident">Describe the incident</string>
+    <string name="report_incident">Report Incident</string>
+    <string name="title">Title</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="max_distance">Max Distance</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="upload">Upload</string>
+    <string name="choose_image">Choose Image:</string>
+    <string name="textview">TextView</string>
+    <string name="country">Country:</string>
+    <string name="choose_an_activity">Choose an Activity:</string>
+    <string name="messages">Messages</string>
+    <string name="log_out">Log out</string>
+    <string name="flood">Flood</string>
+    <string name="earthquake">earthquake</string>
+    <string name="tornado">Tornado</string>
+    <string name="something_n_else">Something\n else</string>
+    <string name="xtreme_nweather_nconditions">Εxtreme \nweather \nconditions</string>
+    <string name="report_an_incident">Report an incident:</string>
+    <string name="fire">Fire</string>
+    <string name="email">email</string>
+    <string name="no_messages">No messages</string>
+    <string name="delete">Delete</string>
+    <string name="accept">Accept</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
 </resources>
