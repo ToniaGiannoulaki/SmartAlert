@@ -23,8 +23,9 @@
         android:id="@+id/textView_Messages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="32dp"
+        android:text="No messages"
         app:layout_constraintEnd_toEndOf="@+id/textView_Welcomeback2"
         app:layout_constraintTop_toBottomOf="@+id/textView_Welcomeback2" />
 

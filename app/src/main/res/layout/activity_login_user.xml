@@ -15,7 +15,7 @@
         android:layout_marginStart="13dp"
         android:layout_marginBottom="9dp"
         android:background="#7E57C2"
-        android:text="Log out"
+        android:text="Log Out"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="@+id/textView4" />
 
@@ -23,7 +23,7 @@
         android:id="@+id/button_MessagesUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="240dp"
+        android:layout_marginStart="216dp"
         android:layout_marginBottom="8dp"
         android:background="#7E57C2"
         android:text="Messages"

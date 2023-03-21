@@ -265,7 +265,7 @@ public class IncidentUser extends AppCompatActivity {
         return null;
     }
 
-    //Save message to Firebase Realtime DB
+    //Save  user's message to Firebase Realtime DB
     public void saveMessage(String inc, String add, String lat, String lon, String dat, String ti, String desc,String img){
 
         incidentInfo.setIncident(inc);
@@ -278,9 +278,8 @@ public class IncidentUser extends AppCompatActivity {
         incidentInfo.setImageUri(img);
 
 
-        FirebaseAuth mAuth =  FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("Messages");
+        databaseReference = firebaseDatabase.getReference("UserMessages");
         String userId = databaseReference.push().getKey();
         databaseReference.child(userId).setValue(incidentInfo);
 
