@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="app_name">SmartAlert</string>
+    <string name="password">Κωδικός Πρόσβα</string>
+    <string name="confirm">Επιβεβαίωση</string>
+    <string name="phone_number">Αριθμός Κινητού</string>
+    <string name="e_mail">Διεύθυνση Ηλεκτ. Ταχυ.</string>
+    <string name="welcome">Καλώς Ήρθατε</string>
+    <string name="sign_in">Σύνδεση</string>
+    <string name="sign_up">Εγγραφή</string>
+    <string name="password_login">Κωδικός Πρόσβασης</string>
+    <string name="Language">Γλώσσα</string>
+    <string name="name">Όνομα</string>
+    <string name="send">Στείλετε</string>
+    <string name="describe_the_incident">Περιγραφή Περιστατικού</string>
+    <string name="report_incident">Αναφορά Περιστατικού</string>
+    <string name="title">Περιστατικό</string>
+    <string name="latitude">Γεω. Πλάτος</string>
+    <string name="longitude">Γεω. Μήκος</string>
+    <string name="max_distance">Απόσταση</string>
+    <string name="date">Ημερομηνία</string>
+    <string name="time">Ώρα</string>
+    <string name="upload">Ανέβασμα</string>
+    <string name="choose_image">Διαλέξτε εικόνα</string>
+    <string name="country">Χώρα</string>
+    <string name="choose_an_activity">Διαλέξτε Δραστηριότητα</string>
+    <string name="messages">Μηνύματα</string>
+    <string name="log_out">Αποσύνδεση</string>
+    <string name="flood">Πλυμμήρα</string>
+    <string name="earthquake">Σεισμός</string>
+    <string name="tornado">Ανεμοστρόβιλος</string>
+    <string name="something_n_else">Άλλο Περιστατικό</string>
+    <string name="xtreme_nweather_nconditions">Επικίνδυνες Καιρικές Συνθήκες</string>
+    <string name="report_an_incident">Αναφορά Περιστατικού</string>
+    <string name="fire">Φωτιά</string>
+    <string name="email">Διεύθυνση Ηλε. Ταχυ.</string>
+    <string name="no_messages">Κανένα μήνυμα</string>
+    <string name="delete">Διαγραφή</string>
+    <string name="accept">Αποδοχή</string>
+    <string name="first_name">Όνομα</string>
+    <string name="last_name">Επίθετο</string>
+</resources>

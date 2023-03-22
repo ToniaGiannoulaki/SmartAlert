@@ -57,6 +57,8 @@ public class MessagesEmployee extends AppCompatActivity {
                             "\nDate: " + lastMessage.getDate() +
                             "\nTime: " + lastMessage.getTime() +
                             "\nDescription: " + lastMessage.getDescription());
+
+
                     // Load the image from the URL and display it in the image view using Glide
                     Glide.with(imageView)
                             .load(lastMessage.getImageUri())

@@ -26,7 +26,6 @@ public class MenuScreen extends AppCompatActivity {
     
     Button button;
     EditText editText_email, editText_password;
-    boolean passwordVisible;
     FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
 
@@ -47,31 +46,6 @@ public class MenuScreen extends AppCompatActivity {
         editText_email = findViewById(R.id.text_email);
         editText_password = findViewById(R.id.text_password);
 
-        /*
-        //Visible/invisible password
-        editText_password.setOnTouchListener((view, motionEvent) -> {
-            final int Right = 2;
-            if(motionEvent.getAction()== MotionEvent.ACTION_UP){
-                if(motionEvent.getRawX()>=editText_password.getRight()-editText_password.getCompoundDrawables()[Right].getBounds().width()){
-                    int selection = editText_password.getSelectionEnd();
-                    //Hide password
-                    if(passwordVisible){
-                        editText_password.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_baseline_visibility_off_24,0);
-                        editText_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                        passwordVisible = false;
-                        //Show password
-                    }else{
-                        editText_password.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_baseline_visibility_24,0);
-                        editText_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                        passwordVisible = true;
-                    }
-                    editText_password.setSelection(selection);
-                    return true;
-                }
-            }
-            return false;
-        });
-        */
         // Check if user is already logged in
         FirebaseUser currentUser =  firebaseAuth.getCurrentUser();
         if (currentUser != null) {
@@ -106,30 +80,6 @@ public class MenuScreen extends AppCompatActivity {
 
         button.setOnClickListener(view -> startActivity(intent2));
 
-    }
-
-    private void showChangeLanguageDialog() {
-        //Array of languages to display in alert dialog
-        final String[] listItems = {"English","Ελληνικά"};
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(MenuScreen.this);
-        mBuilder.setTitle("Choose Language");
-        mBuilder.setSingleChoiceItems(listItems, -1, (dialogInterface, i) -> {
-            if (i==0){
-                //Choose English
-                setLocale("en");
-                recreate();
-            }
-            else if(i==1){
-                //Choose Greek
-                setLocale("gr");
-                recreate();
-            }
-            //dismiss alert dialog when language is selected
-            dialogInterface.dismiss();
-        });
-        AlertDialog mDialog = mBuilder.create();
-        //show alert dialog
-        mDialog.show();
     }
 
     private void setLocale(String lang) {

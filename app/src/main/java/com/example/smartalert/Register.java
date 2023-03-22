@@ -1,5 +1,8 @@
 package com.example.smartalert;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +29,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Locale;
 
 public class Register extends AppCompatActivity {
 
@@ -63,6 +69,10 @@ public class Register extends AppCompatActivity {
         editText_phone.addTextChangedListener(logintextWatcher);
         editText_lastname.addTextChangedListener(logintextWatcher);
 
+        loadLocale();
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle(getResources().getString(R.string.app_name));
 
         // below line is used to get the
         // instance of our Firebase database.
@@ -99,6 +109,25 @@ public class Register extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    //Load language saved in share preferences
+    public void loadLocale (){
+        SharedPreferences preferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = preferences.getString("My_Lang", "");
+        setLocale(language);
+    }
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
     }
     void showMessage(String title, String message) {
         new AlertDialog.Builder(this).setTitle(title).setMessage(message).setCancelable(true).show();
