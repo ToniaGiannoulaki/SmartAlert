@@ -5,13 +5,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
-import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -36,11 +34,6 @@ public class MenuScreen extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
-
-        loadLocale();
-        ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setTitle(getResources().getString(R.string.app_name));
 
         //Sign in Account
         editText_email = findViewById(R.id.text_email);
@@ -82,25 +75,6 @@ public class MenuScreen extends AppCompatActivity {
 
     }
 
-    private void setLocale(String lang) {
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-
-        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
-        editor.putString("My_Lang", lang);
-        editor.apply();
-    }
-
-    //Load language saved in share preferences
-    public void loadLocale (){
-        SharedPreferences preferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = preferences.getString("My_Lang", "");
-        setLocale(language);
-    }
-
     //Sign in
     private void signIn() {
         FirebaseAuth.getInstance().signInWithEmailAndPassword(editText_email.getText().toString(), editText_password.getText().toString())
@@ -135,5 +109,4 @@ public class MenuScreen extends AppCompatActivity {
         // Exit the app
         finishAffinity();
     }
-
 }

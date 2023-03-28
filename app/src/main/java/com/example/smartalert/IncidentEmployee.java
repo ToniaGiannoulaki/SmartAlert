@@ -1,7 +1,11 @@
 package com.example.smartalert;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,6 +13,8 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Locale;
 
 public class IncidentEmployee extends AppCompatActivity {
 
@@ -23,6 +29,11 @@ public class IncidentEmployee extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incident_employee);
+
+        loadLocale();
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle(getResources().getString(R.string.app_name));
 
         title = findViewById(R.id.editText_Title);
         latitude = findViewById(R.id.editText_Latitude);
@@ -70,5 +81,22 @@ public class IncidentEmployee extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("EmployeeMessages");
         String userId = databaseReference.push().getKey();
         databaseReference.child(userId).setValue(incidentEmployeeInfo);
+    }
+
+    //Load language saved in share preferences
+    private void setLocale(String lang){
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
+    }
+    public void loadLocale(){
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = sharedPreferences.getString("My_Lang", "");
+        setLocale(language);
     }
 }
