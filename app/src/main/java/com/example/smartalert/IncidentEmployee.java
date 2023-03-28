@@ -23,7 +23,6 @@ public class IncidentEmployee extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
-
     IncidentEmployeeInfo incidentEmployeeInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
