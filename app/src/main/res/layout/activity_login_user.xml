@@ -102,8 +102,8 @@
 
     <ImageButton
         android:id="@+id/imageButton_fire"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="102dp"
+        android:layout_height="104dp"
         android:layout_marginStart="29dp"
         android:layout_marginTop="31dp"
         android:layout_marginEnd="14dp"
@@ -118,8 +118,8 @@
 
     <ImageButton
         android:id="@+id/imageButton_flood"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
         android:layout_marginTop="31dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="30dp"
@@ -133,8 +133,8 @@
 
     <ImageButton
         android:id="@+id/imageButton_earthquake"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="107dp"
+        android:layout_height="104dp"
         android:layout_marginEnd="36dp"
         android:contentDescription="Language"
         android:scaleType="fitCenter"

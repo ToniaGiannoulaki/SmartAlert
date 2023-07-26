@@ -48,4 +48,8 @@
     <string name="time_employee">Ώρα</string>
     <string name="describe_the_incident_employee">Περιγραφή Περιστατικού</string>
     <string name="send_employee">Αποστολή</string>
+    <string name="back">πίσω</string>
+    <string name="back_employee">πίσω</string>
+    <string name="back3">πίσω</string>
+    <string name="back_4">"πίσω "</string>
 </resources>

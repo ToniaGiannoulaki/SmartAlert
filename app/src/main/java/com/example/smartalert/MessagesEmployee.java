@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MessagesEmployee extends AppCompatActivity {
 
-    Button accept, delete;
+    Button accept, delete, back;
     TextView message;
     ImageView imageView;
     FirebaseDatabase firebaseDatabase;
@@ -29,6 +29,9 @@ public class MessagesEmployee extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages_employee);
+
+        back = findViewById(R.id.button_back3);
+        back.setOnClickListener(view -> { onBackPressed();});
 
         message = findViewById(R.id.textView_Messages);
         imageView = findViewById(R.id.imageView2);

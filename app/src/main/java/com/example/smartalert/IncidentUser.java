@@ -14,6 +14,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -39,6 +40,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class IncidentUser extends AppCompatActivity {
+    Button back;
     TextView incident, address, latitude, longitude, date, time;
     Calendar calendar;
     SimpleDateFormat simpleDateFormat, simpleDateFormat1;
@@ -56,6 +58,9 @@ public class IncidentUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incident_user);
+
+        back = findViewById(R.id.button_Back);
+        back.setOnClickListener(view -> { onBackPressed();});
 
         incidentInfo = new IncidentInfo();
         ImageView imageUrl = findViewById(R.id.imageView);

@@ -48,4 +48,8 @@
     <string name="time_employee">time</string>
     <string name="describe_the_incident_employee">describe_the_incident</string>
     <string name="send_employee">send</string>
+    <string name="back">back</string>
+    <string name="back_employee">back</string>
+    <string name="back3">back</string>
+    <string name="back_4">back</string>
 </resources>

@@ -7,6 +7,7 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 public class Register extends AppCompatActivity {
 
     EditText editText_name, editText_lastname , editText_password, editText_email, editText_phone;
-    Button button_confirm;
+    Button button_confirm, button_back;
     boolean passwordVisible;
 
     FirebaseAuth mAuth;
@@ -52,7 +53,9 @@ public class Register extends AppCompatActivity {
         editText_email = findViewById(R.id.text_Email);
         editText_phone = findViewById(R.id.text_Phone);
         editText_lastname = findViewById(R.id.text_Lastname);
+
         button_confirm = findViewById(R.id.button_register);
+        button_back = findViewById(R.id.button_back);
 
         editText_name.addTextChangedListener(logintextWatcher);
         editText_password.addTextChangedListener(logintextWatcher);
@@ -72,6 +75,13 @@ public class Register extends AppCompatActivity {
         userInfo = new UserInfo();
 
         mAuth = FirebaseAuth.getInstance();
+
+        button_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         editText_password.setOnTouchListener((view, motionEvent) -> {
             final int Right = 2;

@@ -19,7 +19,7 @@ import java.util.Locale;
 public class IncidentEmployee extends AppCompatActivity {
 
     EditText title, latitude, longitude, maxDistance, date, time, description;
-    Button send;
+    Button send, back;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -41,9 +41,15 @@ public class IncidentEmployee extends AppCompatActivity {
         date = findViewById(R.id.editTextDate);
         time = findViewById(R.id.editTextTime);
         description = findViewById(R.id.editTextTextMultiLine_Description2);
+
         send = findViewById(R.id.button_Send2);
+        back = findViewById(R.id.button_back1);
 
         incidentEmployeeInfo = new IncidentEmployeeInfo();
+
+        back.setOnClickListener(view ->{
+            onBackPressed();
+        });
 
         send.setOnClickListener(view -> {
             String tit = title.getText().toString().trim();

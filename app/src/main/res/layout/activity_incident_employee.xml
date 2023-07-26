@@ -8,12 +8,26 @@
 
     <Button
         android:id="@+id/button_Send2"
-        android:layout_width="137dp"
-        android:layout_height="58dp"
-        android:layout_marginBottom="76dp"
+        android:layout_width="106dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="137dp"
+        android:layout_marginBottom="77dp"
         android:text="@string/send_employee"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_back1"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine_Description2" />
+
+    <Button
+        android:id="@+id/button_back1"
+        android:layout_width="75dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="29dp"
+        android:text="@string/back_employee"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_Send2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine_Description2" />
 
@@ -21,9 +35,9 @@
         android:id="@+id/editTextTextMultiLine_Description2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginEnd="31dp"
-        android:layout_marginBottom="27dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="28dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/describe_the_incident_employee"
@@ -36,18 +50,18 @@
 
     <TextView
         android:id="@+id/textView_Report2"
-        android:layout_width="113dp"
-        android:layout_height="31dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="34dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="11dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginBottom="278dp"
         android:text="@string/report_incident_employee2"
         android:textColor="@color/purple_500"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editText_Latitude"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextMultiLine_Description2"
         app:layout_constraintEnd_toStartOf="@+id/editText_Title"
-        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,14 +69,16 @@
         android:id="@+id/editText_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="43dp"
         android:ems="10"
         android:hint="@string/title"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/editText_Latitude"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_Report2" />
+        app:layout_constraintStart_toEndOf="@+id/textView_Report2"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editText_Latitude"
@@ -74,7 +90,7 @@
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/editText_Longitude"
         app:layout_constraintStart_toStartOf="@+id/editText_Title"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Report2" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_Title" />
 
     <EditText
         android:id="@+id/editText_Longitude"
@@ -116,7 +132,7 @@
         android:id="@+id/editTextTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="27dp"
         android:ems="10"
         android:hint="@string/time_employee"
         android:inputType="time"
